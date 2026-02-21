@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: backend-wallet-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/wallet_transaction
+    username: root
+    password: 2023
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      # We set this to 'none' because Flyway is handling the schema
+      ddl-auto: none
+    properties:
+      hibernate:
+        # Using the generic Dialect for Hibernate 6+
+        dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+
+  # Flyway must be at the same indentation level as 'jpa'
+  flyway:
+    repair-on-migrate: true
+    # This ensures it looks in the correct folder for your V1__Initial_Setup.sql
+#    locations: classpath:db/migration
